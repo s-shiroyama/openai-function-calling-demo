@@ -72,12 +72,12 @@ def main(msg: str):
     messages.append(response_message)
     for tool_call in response_message.tool_calls:
         # 指定された関数を呼び出す
-        function_response = FUNCTIONS[tool_call.function.name]["call"](
-            **json.loads(tool_call.function.arguments)
-        )
         print("=================== debug message ===================")
         print(
             f"call function: {tool_call.function.name}, with arguments: {tool_call.function.arguments}"
+        )
+        function_response = FUNCTIONS[tool_call.function.name]["call"](
+            **json.loads(tool_call.function.arguments)
         )
         messages.append(
             {
